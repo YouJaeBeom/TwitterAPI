@@ -58,7 +58,7 @@ def delete_all_rules(rules):
 def set_rules(delete):
     # You can adjust the rules if needed
     sample_rules = [
-        {"value": "bts -is:retweet"},
+        {"value": '"bts" -is:retweet'},
     ]
     payload = {"add": sample_rules}
     response = requests.post(
@@ -77,7 +77,7 @@ def get_stream(set):
     producer = KafkaProducer(acks=0, compression_type='gzip', api_version=(0, 10, 1), bootstrap_servers=['117.17.189.205:9092','117.17.189.205:9093','117.17.189.205:9094'])
 
     response = requests.get(
-        "https://api.twitter.com/2/tweets/search/stream", auth=bearer_oauth, stream=True,
+        "https://api.twitter.com/2/tweets/search/stream?tweet.fields=created_at", auth=bearer_oauth, stream=True,
     )
     print(response.status_code)
     if response.status_code != 200:
@@ -91,7 +91,8 @@ def get_stream(set):
             json_response = json.loads(response_line)
             producer.send("api", json.dumps(json_response).encode('utf-8'))
             producer.flush()
-            print(json.dumps(json_response, sort_keys=True))
+            print(json_response)
+            #print(json.dumps(json_response, sort_keys=True))
 
 
 def main():
