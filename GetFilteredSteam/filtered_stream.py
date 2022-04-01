@@ -2,17 +2,14 @@ import requests
 import os
 import json
 from kafka import KafkaProducer
-# the regular imports, as well as this:
 from urllib3.exceptions import ProtocolError
-# To set your enviornment variables in your terminal run the following line:
-# export 'BEARER_TOKEN'='<your_bearer_token>'
 #bearer_token = os.environ.get("BEARER_TOKEN")
 #bearer_token = "AAAAAAAAAAAAAAAAAAAAAIYXGwEAAAAAaUcaAMc88Bjx9WRz%2BPzYRs6Co%2Bs%3DaLg9uUg5IbJ0F3CM7ivoKacwqqBwIaIsYe5xw4qdkykGh7Tmje"
 #bearer_token = "AAAAAAAAAAAAAAAAAAAAAIYXGwEAAAAA5y3mcPIze5%2BxhqNL0JwDHSUiI%2Fc%3DxSMxCUqFLcqCOYNht5PuwF6txgznmldEjaJtB7keCOZGyA5wSx"
-#bearer_token = "AAAAAAAAAAAAAAAAAAAAAHyhPwEAAAAALKrI0h1Ct2Cz2Zupaym%2FlW4xd6U%3D1m5Gemz9PsV2bba7CA0Pn2A2R3SpZgzGS41EMhDW63zD2Bzvz6"
+bearer_token = "AAAAAAAAAAAAAAAAAAAAAHyhPwEAAAAALKrI0h1Ct2Cz2Zupaym%2FlW4xd6U%3D1m5Gemz9PsV2bba7CA0Pn2A2R3SpZgzGS41EMhDW63zD2Bzvz6"
 #bearer_token = "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
 
-bearer_token ="AAAAAAAAAAAAAAAAAAAAAGiFPQEAAAAAu7suubjKWeoDZ6WJnyn%2Bw%2BvzsTQ%3DOwureac7DLPKKfzomS4aIkZrvIMsiIseiYGM35NjLrG0DW908X"
+#bearer_token ="AAAAAAAAAAAAAAAAAAAAAGiFPQEAAAAAu7suubjKWeoDZ6WJnyn%2Bw%2BvzsTQ%3DOwureac7DLPKKfzomS4aIkZrvIMsiIseiYGM35NjLrG0DW908X"
 
 def bearer_oauth(r):
     """
@@ -58,7 +55,7 @@ def delete_all_rules(rules):
 def set_rules(delete):
     # You can adjust the rules if needed
     sample_rules = [
-        {"value": '"bts" -is:retweet'},
+        {"value": '"russia" -is:retweet'},
     ]
     payload = {"add": sample_rules}
     response = requests.post(
